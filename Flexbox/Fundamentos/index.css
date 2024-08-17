@@ -1,0 +1,75 @@
+    *,
+    *::after,
+    *::before {
+        box-sizing: border-box; /*Esta propiedad lo que hace es acomodar el contenido para que tenga 
+                            encuenta el tamaño que se le dio, es decir, para que la caja no se 
+                            agrande mas de lo necesaroi*/
+}
+
+/*El primer valor despues de las propiedades es el que se aplica por defecto*/
+.container {
+    background-color: #333;
+    width: 100%;
+    height: 30vh; 
+    display: inline-flex; /*Toma solo lo necesario*/
+    display: flex; /*Comportamiento por defecto del flexbox es tomar todo el ancho del contenedor*/
+
+    flex-direction: column; /*row | row-reverse | column | column-reverse; Cuando el eje principal es 
+    y justify-content: funciona vertical, y align-content: funciona horizontal;*/
+
+    flex-wrap: wrap-reverse; /*Define si la caja flexbox envuelve o NO a sus hijos nowrap | wrap | wrap-reverse*/
+    flex-flow: column nowrap; /*Es un shortCode de flexdirection y flex-wrap*/
+    
+    /*Define la alineacion de los elementos respecto al eje principal (Main axis), Valor por defecto flex-start,
+    flex-end | center | space-between: No deja espacio entre las orillas,| space around: Deja 
+    espacio tanto en las orillas como en los items, Solo aplica si sobra espacio*/
+
+    justify-content: flex-start; /*flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe;*/
+
+    align-items: stretch; /* Define la alineación de los hijos en el eje transversal (cross axis), dentro de cada línea */
+    /* stretch | flex-start | flex-end | center | baseline */
+
+    align-content: flex-start;  /*Align content solo se va aplicar cuando se tiene mas de una fila dentro del contenedor flexbox,
+    align items cuando solo hay una fila Define la alineación de los hijos en el eje transversal (cross axis), NO funciona cuando 
+    los hijos están en UNA sóla línea (es decir cuando flex-wrap tiene el valor de nowrap, NO FUNCIONA) */
+    /* flex-start | flex-end | center | space-between | space-around | space-evenly | stretch */
+} 
+
+.item {
+    /*El tamaño de los elementos se va aplicar dependiendo de donde se encuentre el eje*/
+    border: medium solid #999;
+    background-color: #9e0e0e;
+    /* width: 20%; */
+    /*flex-grow: 1;  Cuando la caja flexbox tenga espacio sobrante, es la habilidad o el factor de crecer, valor por defecto es 0,
+     NO se aceptan valores negativos */
+    
+    flex-shrink: 1;  /* Cuando la caja flexbox NO tenga espacio sobrante, es la habilidad o el factor de encogerse, valor por defecto es 1,
+     NO se aceptan valores negativos */
+    
+    flex-basis: 100px; /* Es el tamaño del elemento hijo dentro de la línea de la caja flexbox
+        Si la caja flexbox tiene dirección de fila, flex-basis representa el width
+        Si la caja flexbox tiene dirección de columna, flex-basis representa el height
+        Valor por defecto auto */
+
+    height: 50px;
+    flex: 1 1 500px; /* Es un shorthand de las propiedades flex-grow flex-shrink y flex-basis, en ese orden*/
+
+    order: 0; /* Representa el orden que tendrán los elementos hijos en la caja flexbox Valor por defecto 0
+                Se aceptan valores positivos y negativos Un valor menor siempre irá antes que un valor mayor */
+
+    align-self: stretch; /* stretch | flex-start | flex-end | center | baseline */
+    /* Sobreescribe el valor de la propiedad align-items sólo para el elemento hijo especificado */
+}
+
+/*Ejemplo para ilustrar el comportamiento de flex-shrink, 
+Cuando llego a menos de este rango se aplica la propiedad flex-shrink 
+Total de la Sumatoria de cada elemento de la caja = 239,31,- 225 =
+Tamaño de reduccion = 14.31 % Numero de porciones flex-shrink 4 = 3,57
+- Tamaño de cada elemento 1: 79.77 - 3,57 = 
+- Tamaño de cada elemento 2: 79.77 - (3,57 * 2) = 
+- Tamaño de cada elemento 3: 79.77 -  3, 57 = */
+
+.item:nth-child(2){
+    order: -1;
+    align-self: flex-start;
+}

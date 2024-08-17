@@ -1,0 +1,8 @@
+.container {
+    background-color: #fa0000;
+    display: flex;
+}
+
+.item {
+    background-color: #666;
+}
